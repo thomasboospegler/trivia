@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { shape, func } from 'prop-types';
 import fetchQuestionsTriviaApi from '../services/fetchQuestionsTrivia';
+import Header from '../components/Header';
 
 export default class Game extends Component {
   state = {
@@ -59,6 +60,7 @@ export default class Game extends Component {
 
     return (
       <div>
+        <Header />
         { results.length > 0 ? (
           this.showCurrentQuestion()
         ) : <h1>Loading...</h1> }
