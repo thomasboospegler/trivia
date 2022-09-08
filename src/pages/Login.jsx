@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { shape, func } from 'prop-types';
+import fetchTriviaApi from '../services/triviaAPI';
 import { Link } from 'react-router-dom';
 
 export default class Login extends Component {
@@ -23,6 +25,15 @@ export default class Login extends Component {
     return !(isNameValid && isEmailValid);
   };
 
+  getTokenTrivia = async (event) => {
+    event.preventDefault();
+    const { history } = this.props;
+
+    const { token } = await fetchTriviaApi();
+    localStorage.setItem('token', token);
+    history.push('/game');
+  };
+
   render() {
     const { name, email } = this.state;
     return (
@@ -44,9 +55,10 @@ export default class Login extends Component {
           onChange={ this.handleChange }
         />
         <button
-          type="button"
-          disabled={ this.validateInpiuts() }
+          type="submit"
           data-testid="btn-play"
+          disabled={ this.validateInpiuts() }
+          onClick={ this.getTokenTrivia }
         >
           Play
         </button>
@@ -62,3 +74,9 @@ export default class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  history: shape({
+    push: func,
+  }).isRequired,
+};
