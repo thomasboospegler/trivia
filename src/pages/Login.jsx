@@ -30,6 +30,7 @@ export default class Login extends Component {
           type="text"
           data-testid="input-player-name"
           value={ name }
+          placeholder="user name"
           name="name"
           onChange={ this.handleChange }
         />
@@ -38,6 +39,7 @@ export default class Login extends Component {
           data-testid="input-gravatar-email"
           value={ email }
           name="email"
+          placeholder="user email"
           onChange={ this.handleChange }
         />
         <button
