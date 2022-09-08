@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { shape, func } from 'prop-types';
-import fetchTriviaApi from '../services/triviaAPI';
 import { Link } from 'react-router-dom';
+import fetchTriviaApi from '../services/triviaAPI';
 
 export default class Login extends Component {
   state = {
