@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { shape, func } from 'prop-types';
 import fetchTriviaApi from '../services/triviaAPI';
+import { Link } from 'react-router-dom';
 
 export default class Login extends Component {
   state = {
@@ -59,6 +60,14 @@ export default class Login extends Component {
         >
           Play
         </button>
+        <Link to="/settings">
+          <button
+            type="button"
+            data-testid="btn-settings"
+          >
+            Configurações
+          </button>
+        </Link>
       </form>
     );
   }
