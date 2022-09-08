@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { shape, func } from 'prop-types';
-import fetchTriviaApi from '../services/triviaAPI';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import fetchTriviaApi from '../services/triviaAPI';
+import { userInfoAction } from '../redux/actions';
 
-export default class Login extends Component {
+class Login extends Component {
   state = {
     name: '',
     email: '',
@@ -27,10 +29,15 @@ export default class Login extends Component {
 
   getTokenTrivia = async (event) => {
     event.preventDefault();
-    const { history } = this.props;
-
+    const { history, dispatch } = this.props;
+    const { name, email } = this.state;
+    const userInfo = {
+      name,
+      email,
+    };
     const { token } = await fetchTriviaApi();
     localStorage.setItem('token', token);
+    dispatch(userInfoAction(userInfo));
     history.push('/game');
   };
 
@@ -74,7 +81,10 @@ export default class Login extends Component {
 }
 
 Login.propTypes = {
+  dispatch: func.isRequired,
   history: shape({
     push: func,
   }).isRequired,
 };
+
+export default connect()(Login);
