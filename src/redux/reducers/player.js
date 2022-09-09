@@ -1,5 +1,5 @@
 // import { PERSONAL_INFO } from '../actions';
-import { REQUEST_LOGIN } from '../actions';
+import { REQUEST_LOGIN, UPDATE_SCORE } from '../actions';
 
 const initialState = {
   name: '',
@@ -15,6 +15,11 @@ const player = (state = initialState, action) => {
       ...state,
       name: action.userInfo.name,
       gravatarEmail: action.userInfo.email,
+    };
+  case UPDATE_SCORE:
+    return {
+      ...state,
+      score: state.score + action.value,
     };
   default:
     return state;
