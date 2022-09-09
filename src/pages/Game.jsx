@@ -47,6 +47,15 @@ export default class Game extends Component {
     this.setState({ incorrect: 'question_false', correct: 'question_true', clock: 0 });
   };
 
+  nextQuestion = () => {
+    this.setState((previousState) => ({
+      questionNumber: previousState.questionNumber + 1,
+      clock: 30,
+      correct: '',
+      incorrect: '',
+    }));
+  };
+
   showCurrentQuestion = () => {
     const { results, questionNumber, incorrect, correct, randomNumber } = this.state;
     const {
@@ -97,7 +106,7 @@ export default class Game extends Component {
   };
 
   render() {
-    const { results, clock } = this.state;
+    const { results, clock, correct } = this.state;
 
     return (
       <div>
@@ -105,6 +114,15 @@ export default class Game extends Component {
         {results.length > 0 ? (
           this.showCurrentQuestion()
         ) : <h1>Loading...</h1>}
+        {correct.length > 0 && (
+          <button
+            onClick={ this.nextQuestion }
+            type="button"
+            data-testid="btn-next"
+          >
+            Next
+          </button>
+        ) }
         <span>{clock}</span>
       </div>
     );
