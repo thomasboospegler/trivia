@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import { shape, func } from 'prop-types';
 import fetchQuestionsTriviaApi from '../services/fetchQuestionsTrivia';
 import Header from '../components/Header';
+import './Game.css';
 
 export default class Game extends Component {
   state = {
     results: [],
     questionNumber: 0,
+    correct: '',
+    incorrect: '',
   };
 
   async componentDidMount() {
@@ -19,8 +22,13 @@ export default class Game extends Component {
     });
   }
 
+  answerClick = (e) => {
+    e.preventDefault();
+    this.setState({ incorrect: 'question_false', correct: 'question_true' });
+  };
+
   showCurrentQuestion = () => {
-    const { results, questionNumber } = this.state;
+    const { results, questionNumber, incorrect, correct } = this.state;
     const {
       category,
       correct_answer: correctAnswer,
@@ -40,11 +48,23 @@ export default class Game extends Component {
         <div data-testid="answer-options">
           { allAnswers.map((answer, index) => (
             (answer === correctAnswer) ? (
-              <button type="button" key={ index } data-testid="correct-answer">
+              <button
+                onClick={ this.answerClick }
+                className={ correct }
+                type="button"
+                key={ index }
+                data-testid="correct-answer"
+              >
                 { answer }
               </button>
             ) : (
-              <button type="button" key={ index } data-testid={ `wrong-answer-${index}` }>
+              <button
+                onClick={ this.answerClick }
+                className={ incorrect }
+                type="button"
+                key={ index }
+                data-testid={ `wrong-answer-${index}` }
+              >
                 { answer }
               </button>
             )
