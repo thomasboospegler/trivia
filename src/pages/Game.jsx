@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { shape, func } from 'prop-types';
 import fetchQuestionsTriviaApi from '../services/fetchQuestionsTrivia';
 import Header from '../components/Header';
-import './Game.css';
+import '../styles/Game.css';
 
 const TIMER = 1000;
 
@@ -42,16 +42,13 @@ export default class Game extends Component {
     return (clock <= 0);
   };
 
-  showCurrentQuestion = () => {
-    const { results, questionNumber, randomNumber } = this.state;
-    
   answerClick = (e) => {
     e.preventDefault();
-    this.setState({ incorrect: 'question_false', correct: 'question_true' });
+    this.setState({ incorrect: 'question_false', correct: 'question_true', clock: 0 });
   };
 
   showCurrentQuestion = () => {
-    const { results, questionNumber, incorrect, correct } = this.state;
+    const { results, questionNumber, incorrect, correct, randomNumber } = this.state;
     const {
       category,
       correct_answer: correctAnswer,
@@ -66,10 +63,10 @@ export default class Game extends Component {
 
     return (
       <div>
-        <p data-testid="question-category">{ category }</p>
-        <p data-testid="question-text">{ question }</p>
+        <p data-testid="question-category">{category}</p>
+        <p data-testid="question-text">{question}</p>
         <div data-testid="answer-options">
-          { allAnswers.map((answer, index) => (
+          {allAnswers.map((answer, index) => (
             (answer === correctAnswer) ? (
               <button
                 disabled={ this.isButtonDisabled() }
@@ -79,7 +76,7 @@ export default class Game extends Component {
                 key={ index }
                 data-testid="correct-answer"
               >
-                { answer }
+                {answer}
               </button>
             ) : (
               <button
@@ -90,7 +87,7 @@ export default class Game extends Component {
                 key={ index }
                 data-testid={ `wrong-answer-${index}` }
               >
-                { answer }
+                {answer}
               </button>
             )
           ))}
@@ -105,9 +102,9 @@ export default class Game extends Component {
     return (
       <div>
         <Header />
-        { results.length > 0 ? (
+        {results.length > 0 ? (
           this.showCurrentQuestion()
-        ) : <h1>Loading...</h1> }
+        ) : <h1>Loading...</h1>}
         <span>{clock}</span>
       </div>
     );
