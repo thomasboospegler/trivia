@@ -69,12 +69,16 @@ class Game extends Component {
   };
 
   nextQuestion = () => {
+    const MAX_QUESTION_NUMBER = 4;
+    const { questionNumber } = this.state;
     this.setState((previousState) => ({
       questionNumber: previousState.questionNumber + 1,
       clock: 30,
       correct: '',
       incorrect: '',
     }));
+    const { history } = this.props;
+    if (questionNumber === MAX_QUESTION_NUMBER) return history.push('/feedback');
   };
 
   showCurrentQuestion = () => {
