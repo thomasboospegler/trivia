@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { func, number, shape } from 'prop-types';
+import { func, number, shape, string } from 'prop-types';
 import Header from '../components/Header';
 
 class Feedback extends Component {
@@ -9,10 +9,29 @@ class Feedback extends Component {
   };
 
   componentDidMount() {
-    const { assertions } = this.props;
+    const { assertions,
+      score, gravatarEmail, name,
+    } = this.props;
     const MIN = 3;
-    if (assertions < MIN) return this.setState({ text: 'Could be better...' });
-    if (assertions >= MIN) return this.setState({ text: 'Well Done!' });
+    if (assertions < MIN) this.setState({ text: 'Could be better...' });
+    if (assertions >= MIN) this.setState({ text: 'Well Done!' });
+
+    const result = {
+      assertions,
+      score,
+      gravatarEmail,
+      name,
+    };
+    const localData = JSON.parse(localStorage.getItem('ranking'));
+    if (localData) {
+      const saveitem = [...localData, result];
+      console.log(saveitem);
+      saveitem.sort((a, b) => b.score - a.score);
+      console.log(saveitem);
+      localStorage.setItem('ranking', JSON.stringify(saveitem));
+    } else {
+      localStorage.setItem('ranking', JSON.stringify([result]));
+    }
   }
 
   handleClick = () => {
@@ -67,6 +86,8 @@ Feedback.propTypes = {
   history: shape({
     push: func,
   }).isRequired,
+  gravatarEmail: string.isRequired,
+  name: string.isRequired,
 };
 
 export default connect(mapStateToProps)(Feedback);

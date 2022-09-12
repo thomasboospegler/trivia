@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { func, shape } from 'prop-types';
+import { shape, func } from 'prop-types';
 
 export default class Ranking extends Component {
   handleClick = () => {
@@ -8,18 +8,35 @@ export default class Ranking extends Component {
   };
 
   render() {
+    const localRanking = JSON.parse(localStorage.getItem('ranking'));
+
     return (
       <div>
-        <h1 data-testid="ranking-title">Ranking</h1>
+        <h1>Ranking</h1>
+        <ol>
+          {localRanking
+            .map((player, index) => (
+              <li key={ index }>
+                <p data-testid={ `player-name-${index}` }>
+                  { player.name }
+                </p>
+                <span data-testid={ `player-score-${index}` }>
+                  { player.score }
+                </span>
+                <div>
+                  <img src={ player.picture } alt="user" />
+                </div>
+              </li>
+            ))}
+        </ol>
         <button
-          onClick={ this.handleClick }
           type="button"
+          onClick={ this.handleClick }
           data-testid="btn-go-home"
         >
-          Home
+          Inicio
         </button>
       </div>
-
     );
   }
 }
