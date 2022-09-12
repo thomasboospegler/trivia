@@ -14,19 +14,20 @@ export default class Ranking extends Component {
       <div>
         <h1>Ranking</h1>
         <ol>
-          {localRanking.map((player, index) => (
-            <li key={ index }>
-              <p data-testid={ `player-name-${index}` }>
-                { player.name }
-              </p>
-              <span data-testid={ `player-score-${index}` }>
-                { player.score }
-              </span>
-              <div>
-                <img src={ player.picture } alt="user" />
-              </div>
-            </li>
-          ))}
+          {localRanking
+            .map((player, index) => (
+              <li key={ index }>
+                <p data-testid={ `player-name-${index}` }>
+                  { player.name }
+                </p>
+                <span data-testid={ `player-score-${index}` }>
+                  { player.score }
+                </span>
+                <div>
+                  <img src={ player.picture } alt="user" />
+                </div>
+              </li>
+            ))}
         </ol>
         <button
           type="button"
