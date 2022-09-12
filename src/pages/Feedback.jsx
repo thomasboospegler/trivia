@@ -3,13 +3,25 @@ import { connect } from 'react-redux';
 import { func, number, shape } from 'prop-types';
 
 class Feedback extends Component {
-  handleClick = () => {
+  state = {
+    text: '',
+  };
+
+  componentDidMount() {
+    const { assertions } = this.props;
+    const MIN = 3;
+    if (assertions < MIN) return this.setState({ text: 'Could be better...' });
+    if (assertions >= MIN) return this.setState({ text: 'Well Done!' });
+  }
+  
+   handleClick = () => {
     const { history } = this.props;
     history.push('/ranking');
   };
 
   render() {
     const { score, assertions } = this.props;
+    const { text } = this.state;
     return (
       <div data-testid="feedback-text">
         <span data-testid="feedback-total-score">{score}</span>
@@ -21,6 +33,7 @@ class Feedback extends Component {
         >
           Ranking
         </button>
+        <span data-testid="feedback-text">{ text }</span>
       </div>
     );
   }
