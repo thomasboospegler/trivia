@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { shape, func } from 'prop-types';
+import { connect } from 'react-redux';
 import fetchQuestionsTriviaApi from '../services/fetchQuestionsTrivia';
 import Header from '../components/Header';
 import '../styles/Game.css';
+import { updateScore } from '../redux/actions';
 
 const TIMER = 1000;
 
-export default class Game extends Component {
+class Game extends Component {
   state = {
     results: [],
     questionNumber: 0,
@@ -42,18 +44,41 @@ export default class Game extends Component {
     return (clock <= 0);
   };
 
+  updateScore = () => {
+    const { clock, questionNumber, results } = this.state;
+    const point = 10;
+    let difficultyPoint = 0;
+    const HARDPT = 3;
+    if (results[questionNumber].difficulty === 'easy') difficultyPoint = 1;
+    if (results[questionNumber].difficulty === 'medium') difficultyPoint = 2;
+    if (results[questionNumber].difficulty === 'hard') difficultyPoint = HARDPT;
+    const score = point + (clock * difficultyPoint);
+    return score;
+  };
+
   answerClick = (e) => {
+    const scoreAt = this.updateScore();
+    const { dispatch } = this.props;
     e.preventDefault();
     this.setState({ incorrect: 'question_false', correct: 'question_true', clock: 0 });
+    // console.log(scoreAt);
+    if (e.target.id === 'correct-answer') {
+      // console.log(scoreAt);
+      dispatch(updateScore(scoreAt));
+    }
   };
 
   nextQuestion = () => {
+    const MAX_QUESTION_NUMBER = 4;
+    const { questionNumber } = this.state;
     this.setState((previousState) => ({
       questionNumber: previousState.questionNumber + 1,
       clock: 30,
       correct: '',
       incorrect: '',
     }));
+    const { history } = this.props;
+    if (questionNumber === MAX_QUESTION_NUMBER) return history.push('/feedback');
   };
 
   showCurrentQuestion = () => {
@@ -84,6 +109,7 @@ export default class Game extends Component {
                 type="button"
                 key={ index }
                 data-testid="correct-answer"
+                id="correct-answer"
               >
                 {answer}
               </button>
@@ -130,7 +156,10 @@ export default class Game extends Component {
 }
 
 Game.propTypes = {
+  dispatch: func.isRequired,
   history: shape({
     push: func,
   }).isRequired,
 };
+
+export default connect()(Game);
