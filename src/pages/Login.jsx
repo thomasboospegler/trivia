@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import fetchTriviaApi from '../services/triviaAPI';
 import { userInfoAction } from '../redux/actions';
+import logoTrivia from '../images/logo trivia.png';
+import iconTrybe from '../images/icone trybe.png';
+import '../styles/Login.css';
 
 class Login extends Component {
   state = {
@@ -44,40 +47,53 @@ class Login extends Component {
   render() {
     const { name, email } = this.state;
     return (
-      <form onSubmit={ this.handleSubmit }>
-        <input
-          type="text"
-          data-testid="input-player-name"
-          value={ name }
-          placeholder="user name"
-          name="name"
-          onChange={ this.handleChange }
-        />
-        <input
-          type="email"
-          data-testid="input-gravatar-email"
-          value={ email }
-          name="email"
-          placeholder="user email"
-          onChange={ this.handleChange }
-        />
-        <button
-          type="submit"
-          data-testid="btn-play"
-          disabled={ this.validateInpiuts() }
-          onClick={ this.getTokenTrivia }
-        >
-          Play
-        </button>
-        <Link to="/settings">
-          <button
-            type="button"
-            data-testid="btn-settings"
-          >
-            Configurações
-          </button>
-        </Link>
-      </form>
+      <main className="container-main">
+        <section className="container-logo">
+          <img src={ logoTrivia } alt="logo trivia" />
+        </section>
+        <section className="container-login">
+          <form onSubmit={ this.handleSubmit }>
+            <input
+              className="login-input"
+              type="text"
+              data-testid="input-player-name"
+              value={ name }
+              placeholder="Qual é o seu e-mail do gravatar?"
+              name="name"
+              onChange={ this.handleChange }
+            />
+            <input
+              className="login-input"
+              type="email"
+              data-testid="input-gravatar-email"
+              value={ email }
+              name="email"
+              placeholder="Qual é o seu nome?"
+              onChange={ this.handleChange }
+            />
+            <button
+              className="login-button"
+              type="submit"
+              data-testid="btn-play"
+              disabled={ this.validateInpiuts() }
+              onClick={ this.getTokenTrivia }
+            >
+              JOGAR
+            </button>
+            <Link to="/settings">
+              <button
+                className="login-settings"
+                type="button"
+                data-testid="btn-settings"
+              >
+                CONFIGURAÇÕES
+              </button>
+            </Link>
+          </form>
+        </section>
+        <img className="trybe-icon" src={ iconTrybe } alt="Ícone Trybe" />
+      </main>
+
     );
   }
 }

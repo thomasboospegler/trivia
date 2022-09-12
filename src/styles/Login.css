@@ -1,0 +1,56 @@
+.container-main {
+  align-items: center;
+  background-image: url('../images/background.png');
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+form {
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 50px;
+  width: 400px;
+}
+
+.login-input {
+  border: 1px solid #e1e5eb;
+  padding: 12px 16px;
+}
+
+.login-button {
+  background: #2fc18c;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+  font-size: 1.2em;
+  font-weight: 900;
+  padding: 12px 16px;
+  transition: 3s;
+}
+
+.login-button:disabled {
+  background-color: #2fc18c;
+  opacity: 60%;
+}
+
+.login-settings {
+  background: #ea5d5d;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+  font-size: 1.2em;
+  font-weight: 900;
+  padding: 12px 16px;
+  width: 100%;
+}
+
+.trybe-icon {
+  margin-top: 20px;
+}
