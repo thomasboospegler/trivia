@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-// import proptypes from 'prop-types';
 import { shape, func } from 'prop-types';
 
 export default class Ranking extends Component {
@@ -10,11 +8,6 @@ export default class Ranking extends Component {
   };
 
   render() {
-    handleClick = () => {
-      const { history } = this.props;
-      history.push('/');
-    };
-
     const localRanking = JSON.parse(localStorage.getItem('ranking'));
 
     return (
@@ -35,15 +28,13 @@ export default class Ranking extends Component {
             </li>
           ))}
         </ol>
-        <Link to="/">
-          <button
-            type="button"
-            onClick={ this.handleClick }
-            data-testid="btn-go-home"
-          >
-            Inicio
-          </button>
-        </Link>
+        <button
+          type="button"
+          onClick={ this.handleClick }
+          data-testid="btn-go-home"
+        >
+          Inicio
+        </button>
       </div>
     );
   }
