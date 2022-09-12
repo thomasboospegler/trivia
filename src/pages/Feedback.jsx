@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { func, number, shape } from 'prop-types';
+import Header from '../components/Header';
 
 class Feedback extends Component {
   state = {
@@ -13,8 +14,8 @@ class Feedback extends Component {
     if (assertions < MIN) return this.setState({ text: 'Could be better...' });
     if (assertions >= MIN) return this.setState({ text: 'Well Done!' });
   }
-  
-   handleClick = () => {
+
+  handleClick = () => {
     const { history } = this.props;
     history.push('/ranking');
   };
@@ -24,6 +25,7 @@ class Feedback extends Component {
     const { text } = this.state;
     return (
       <div data-testid="feedback-text">
+        <Header />
         <span data-testid="feedback-total-score">{score}</span>
         <span data-testid="feedback-total-question">{assertions}</span>
         <button
@@ -42,6 +44,8 @@ class Feedback extends Component {
 const mapStateToProps = (state) => ({
   score: state.player.score,
   assertions: state.player.assertions,
+  gravatarEmail: state.player.gravatarEmail,
+  name: state.player.name,
 });
 
 Feedback.propTypes = {
