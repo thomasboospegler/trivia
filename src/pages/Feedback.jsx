@@ -13,8 +13,8 @@ class Feedback extends Component {
     if (assertions < MIN) return this.setState({ text: 'Could be better...' });
     if (assertions >= MIN) return this.setState({ text: 'Well Done!' });
   }
-  
-   handleClick = () => {
+
+  handleClick = () => {
     const { history } = this.props;
     history.push('/ranking');
   };
@@ -33,7 +33,7 @@ class Feedback extends Component {
         >
           Ranking
         </button>
-        <span data-testid="feedback-text">{ text }</span>
+        <span data-testid="feedback-text">{text}</span>
       </div>
     );
   }
