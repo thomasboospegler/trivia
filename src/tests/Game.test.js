@@ -22,6 +22,7 @@ describe('tests made in the Login page', () => {
     },
   };
   const route = '/game';
+  const jestTimeOut = 35000;
 
   it('should have the user name, image and score in the screen', () => {
     const { history } = renderWithRouterAndRedux(<App />, initialState, route);
@@ -71,6 +72,30 @@ describe('tests made in the Login page', () => {
     });
   });
 
+  it('teste SCORE', async () => {
+    const { history } = renderWithRouterAndRedux(<App />, initialState, route);
+
+    await waitFor(() => {
+      const questions = [/What was Rage Against/i, /Vincent van Gogh cut/i,
+        /In the 2012 animated film/i, /In Margaret Atwood/i, /Which of the following is/i];
+      const length = 4;
+
+      questions.map((question, index) => {
+        const questionElement = screen.getByText(question);
+        expect(questionElement).toBeInTheDocument();
+        const rightAnswer = screen.getByTestId('correct-answer');
+        userEvent.click(rightAnswer);
+        const nextButton = screen.getByRole('button', { name: /Next/i });
+        expect(nextButton).toBeInTheDocument();
+        userEvent.click(nextButton);
+        if (index === length) return expect(history.location.pathname).toBe('/feedback');
+        const score = screen.getByTestId('header-score');
+        return expect(score).not.toBe(0);
+      });
+    });
+  });
+
+  jest.setTimeout(jestTimeOut);
   it('teste TIMER', async () => {
     renderWithRouterAndRedux(<App />, initialState, route);
 
@@ -78,10 +103,22 @@ describe('tests made in the Login page', () => {
     const initialTimerElement = screen.getByText(initialTimer);
     expect(initialTimerElement).toBeInTheDocument();
 
-    await waitFor(() => {
-      const timer = 29;
-      const timerElement = screen.findByText(timer);
-      expect(timerElement).toBeInTheDocument();
+    await new Promise((r) => {
+      const time = 2000;
+      setTimeout(r, time);
     });
+
+    const timer = 29;
+    const timerElement = screen.getByText(timer);
+    expect(timerElement).toBeInTheDocument();
+
+    await new Promise((r) => {
+      const time = 30000;
+      setTimeout(r, time);
+    });
+
+    const lastTimer = 0;
+    const lastTimerElement = screen.getAllByText(lastTimer);
+    expect(lastTimerElement).toHaveLength(2);
   });
 });
