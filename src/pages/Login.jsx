@@ -58,7 +58,7 @@ class Login extends Component {
               type="text"
               data-testid="input-player-name"
               value={ name }
-              placeholder="Qual é o seu e-mail do gravatar?"
+              placeholder="Qual é o seu nome?"
               name="name"
               onChange={ this.handleChange }
             />
@@ -68,7 +68,7 @@ class Login extends Component {
               data-testid="input-gravatar-email"
               value={ email }
               name="email"
-              placeholder="Qual é o seu nome?"
+              placeholder="Qual é o seu e-mail do gravatar?"
               onChange={ this.handleChange }
             />
             <button
