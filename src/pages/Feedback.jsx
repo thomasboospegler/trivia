@@ -25,9 +25,7 @@ class Feedback extends Component {
     const localData = JSON.parse(localStorage.getItem('ranking'));
     if (localData) {
       const saveitem = [...localData, result];
-      console.log(saveitem);
       saveitem.sort((a, b) => b.score - a.score);
-      console.log(saveitem);
       localStorage.setItem('ranking', JSON.stringify(saveitem));
     } else {
       localStorage.setItem('ranking', JSON.stringify([result]));
