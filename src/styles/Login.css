@@ -7,13 +7,20 @@
   min-height: 100vh;
 }
 
+.container-logo img {
+  margin-left: 30px;
+  margin-top: 10px;
+  max-height: 80%;
+  max-width: 80%;
+}
+
 form {
   background-color: white;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 50px;
+  padding: 40px;
   width: 400px;
 }
 
@@ -52,5 +59,5 @@ form {
 }
 
 .trybe-icon {
-  margin-top: 20px;
+  margin-top: 15px;
 }

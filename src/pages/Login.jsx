@@ -91,9 +91,10 @@ class Login extends Component {
             </Link>
           </form>
         </section>
-        <img className="trybe-icon" src={ iconTrybe } alt="Ícone Trybe" />
+        <footer>
+          <img className="trybe-icon" src={ iconTrybe } alt="Ícone Trybe" />
+        </footer>
       </main>
-
     );
   }
 }
