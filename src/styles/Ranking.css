@@ -1,0 +1,87 @@
+.main-ranking-container {
+    align-items: center;
+    background-image: url('../images/background-ranking.png');
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0%;
+    min-height: 100vh;
+    padding: 0%;
+}
+
+.ranking-container {
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 488px;
+    width: 489px;
+}
+
+.ranking-container h1 {
+    color: #3C1B7A;
+    font-family: sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    font-size: 30px;
+}
+
+.ranking-container button {
+    background-color: #2FC18C;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 16px;
+    font-weight: 700;
+    height: 45px;
+    width: 386px;
+}
+
+.ranking-container ol {
+    margin-top: 10px;
+    overflow-y: scroll;
+    height: 300px;
+    width: 386px;
+}
+
+.ranking-container li {
+    margin-top: 10px;
+    align-items: center;
+    display: flex;
+    background-color: #EBEBEB;
+    border-radius: 30px;
+    /* font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%; */
+    justify-content: space-between;
+    height: 20%;
+    width: 100%;
+}
+
+.player-picture{
+    border-radius: 18px;
+}
+.ranking-score-container {
+    align-items: center;
+    display: flex;
+    background-color: #ffffff;
+    border-radius: 100px;
+    box-shadow: 0px 4px 22px rgba(0, 0, 0, 0.25);
+    height: 80%;
+    width: 40%;
+    justify-content: space-around;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.12em;
+}
+
+.vector {
+    margin-right: 10px;
+}
