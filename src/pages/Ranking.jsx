@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { shape, func } from 'prop-types';
-import vectorStar from '../images/Vector.png';
 import logoTrivia from '../images/logo trivia.png';
+import vectorStar from '../images/Vector.png';
 import '../styles/Ranking.css';
 
 export default class Ranking extends Component {
@@ -16,7 +16,7 @@ export default class Ranking extends Component {
     return (
       <main className="main-ranking-container">
         <section>
-          <img src={ logoTrivia } alt="logo trivia" />
+          <img className="logo-trivia" src={ logoTrivia } alt="logo trivia" />
         </section>
         <section className="ranking-container">
           <h1 data-testid="ranking-title">RANKING</h1>
@@ -24,7 +24,7 @@ export default class Ranking extends Component {
             {localRanking
               .map((player, index) => (
                 <li key={ index }>
-                  <div>
+                  <div className="">
                     <img className="player-picture" src={ player.picture } alt="user" />
                     <span data-testid={ `player-name-${index}` }>
                       { player.name }

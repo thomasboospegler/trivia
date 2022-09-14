@@ -1,0 +1,62 @@
+.main-settings-container {
+  align-items: center;
+  background-image: url('../images/background-ranking.png');
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0%;
+  min-height: 100vh;
+  padding: 0%;
+  text-align: center;
+}
+
+.main-settings-container img {
+  height: 200px;
+  left: 550px;
+  position: absolute;
+  top: 30px;
+  width: 190px;
+}
+
+.form-settings-container {
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 15vh;
+  min-height: 480px;
+}
+
+.form-settings {
+  margin-top: 50px;
+}
+
+.main-settings-container h1 {
+  color: #3c1b7a;
+  font-family: sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.main-settings-container select {
+
+  /* descomentar essas linhas de código
+  -webkit-appearance: none;
+  -moz-appearance: none; */
+  background: url('../images/Polygon 6.png') 95.5% 50% no-repeat;
+  border: 1px solid #e1e5eb;
+  color: #6b7588;
+  font-size: 14px;
+  padding: 12px 16px;
+  width: 100%;
+}
+
+.main-settings-container button {
+  background-color: #2fc18c;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 12px 16px;
+}
