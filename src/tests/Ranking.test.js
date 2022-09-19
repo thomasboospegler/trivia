@@ -27,17 +27,16 @@ describe('tests made in the Ranking page', () => {
     const { history } = renderWithRouterAndRedux(<App />, initialState, route);
     expect(history.location.pathname).toBe('/ranking');
 
-    const title = screen.getByRole('heading', {name: 'Ranking'});
+    const title = screen.getByRole('heading', { name: /Ranking/i });
     expect(title).toBeInTheDocument();
 
-    const homeButton = screen.getByRole('button', { name: /inicio/i });
+    const homeButton = screen.getByRole('button', { name: /jogar novamente/i });
     expect(homeButton).toBeInTheDocument();
     userEvent.click(homeButton);
     expect(history.location.pathname).toBe('/');
   });
   it('should have a display with the name, score, image and email', () => {
     renderWithRouterAndRedux(<App />, initialState, route);
-
 
     const nameElement = screen.getAllByText(/trybe/i);
     expect(nameElement[0]).toBeInTheDocument();
@@ -49,4 +48,3 @@ describe('tests made in the Ranking page', () => {
     expect(imageElement).toBeInTheDocument();
   });
 });
-

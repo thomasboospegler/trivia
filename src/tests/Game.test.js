@@ -121,4 +121,20 @@ describe('tests made in the Login page', () => {
     const lastTimerElement = screen.getAllByText(lastTimer);
     expect(lastTimerElement).toHaveLength(2);
   });
+
+  it('test if api fail', async () => {
+    jest.clearAllMocks();
+    jest.spyOn(global, 'fetch').mockResolvedValue({
+      json: jest.fn().mockResolvedValue({
+        response_code: 10,
+        results: [],
+      }),
+    });
+    const { history } = renderWithRouterAndRedux(<App />, initialState, route);
+    expect(history.location.pathname).toBe('/game');
+
+    await waitFor(() => {
+      expect(history.location.pathname).toBe('/');
+    });
+  });
 });
